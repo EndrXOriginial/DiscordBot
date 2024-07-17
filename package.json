@@ -1,0 +1,23 @@
+{
+  "name": "discordbot",
+  "version": "1.0.0",
+  "description": "This is a bot test for discord",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EndrXOriginial/botTest.git"
+  },
+  "author": "Rey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EndrXOriginial/botTest/issues"
+  },
+  "homepage": "https://github.com/EndrXOriginial/botTest#readme",
+  "dependencies": {
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.4.5"
+  }
+}
