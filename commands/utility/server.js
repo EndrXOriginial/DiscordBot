@@ -5,7 +5,7 @@ const serverCommand = new SlashCommandBuilder()
     .setDescription('Provides information on the server');
 
 const execute = async (interaction) => {
-    await interaction.reply(`This server is ${interaction.guild.name} and has ${interaction.guild.memberCount} people in it!`);
+    await interaction.reply({content: `This server is ${interaction.guild.name} and has ${interaction.guild.memberCount} people in it!`, ephemeral: true});
 }
 
 

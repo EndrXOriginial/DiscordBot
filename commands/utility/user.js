@@ -7,7 +7,7 @@ const userCommand = new SlashCommandBuilder()
     .setDescription('Provides info on the user')
 
 const execute = async (interaction) => {
-    await interaction.reply(`${interaction.user.username}, you have join on ${interaction.member.joinedAt}.`)
+    await interaction.reply({content: `${interaction.user.username}, you have join on ${interaction.member.joinedAt}.`, ephemeral: true});
 }
 
 
