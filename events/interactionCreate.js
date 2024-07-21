@@ -1,11 +1,12 @@
 const { Events, Collection } = require("discord.js");
 
 module.exports = {
+    category: 'events',
     name: Events.InteractionCreate,
     async execute(interaction) {
         if (!interaction.isChatInputCommand()) return;
 
-        const cooldowns = interaction.client;
+        const { cooldowns } = interaction.client;
         const command = interaction.client.commands.get(interaction.commandName);
 
         if (!command) {
@@ -18,21 +19,21 @@ module.exports = {
         };
 
         const now = Date.now();
-        const timestamp = cooldowns.get(command.data.name);
+        const timestamps = cooldowns.get(command.data.name);
         const defaultCooldownDuration = 3;
-        const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) + 1000;
+        const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1_000;
 
-        if (timestamp.has(interaction.user.id)) {
-            const expirationTime = timestamp.get(interaction.user.id) + cooldownAmount;
+        if (timestamps.has(interaction.user.id)) {
+            const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
 
             if (now < expirationTime) {
-                const expiredTimestamp = Math.round(expirationTime / 1000);
-                interaction.reply({content: `You have already used this command. You can again at ${expiredTimestamp}`});
+                const expiredTimestamp = Math.round(expirationTime / 1_000);
+                return interaction.reply({content: `You have already used this command. You can again at ${expiredTimestamp}`});
             }
         }
 
-        timestamp.set(interaction.user.id, now);
-        setTimeout(() => timestamp.delete(interaction.user.id), cooldownAmount);
+        timestamps.set(interaction.user.id, now);
+        setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
         try {
             await command.execute(interaction);

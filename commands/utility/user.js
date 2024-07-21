@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
+const { category } = require("../commandControl/resetCommand");
 
 
 const userCommand = new SlashCommandBuilder()
@@ -11,6 +12,7 @@ const execute = async (interaction) => {
 
 
 module.exports = {
+    category: 'utility',
     cooldown: 10,
     data: userCommand,
     execute

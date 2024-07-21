@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
+const { category } = require("../commandControl/resetCommand");
 
 
 const numberGuessingCommand = new SlashCommandBuilder()
@@ -10,6 +11,7 @@ const execute = async (interaction) => {
 }
 
 module.exports = {
+    category: 'game',
     cooldown: 5,
     data: numberGuessingCommand,
     execute

@@ -10,6 +10,7 @@ const execute = async (interaction) => {
 
 
 module.exports = {
+    category: 'utility',
     cooldown: 15,
     data: serverCommand,
     execute

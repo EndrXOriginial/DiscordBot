@@ -17,11 +17,11 @@ const execute = async (interaction) => {
 
     if (!command) return interaction.reply(`There is no command with the name ${commandName}.`);
 
-    delete require.cache[require.resolve(`./${command.data.name}.js`)];
+    delete require.cache[require.resolve(`../${command.category}/${command.data.name}.js`)];
 
     try {
-        const newCommand = require(`./${command.data.name}`);
-        interaction.client.command.set(newCommand.data.name, newCommand);
+        const newCommand = require(`../${command.category}/${command.data.name}`);
+        interaction.client.commands.set(newCommand.data.name, newCommand);
         interaction.reply(`The /${newCommand.data.name} has been reloaded`);
     } catch (e) {
         console.log(e);
@@ -30,6 +30,7 @@ const execute = async (interaction) => {
 }
 
 module.exports = {
+    category: 'commandControl',
     data: resetCommand,
     execute
 }

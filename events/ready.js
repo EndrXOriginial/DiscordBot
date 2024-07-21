@@ -2,6 +2,7 @@ const { Events } = require("discord.js");
 const { execute } = require("../commands/utility/ping");
 
 module.exports = {
+    category: 'events',
     name: Events.ClientReady,
     once: true,
     execute(client) {
