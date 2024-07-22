@@ -20,7 +20,19 @@ module.exports = {
             {name: 'Tell us about yourself', value: 'React to this message with the emoji that corresponds to you', inline: true}
         )
 
-        channel.send({embeds: [welcomeEmbed]});
+        channel.send({embeds: [welcomeEmbed]}).then(async message => {
+            try {
+                await message.react('👍');
+                await message.react('👦');
+                await message.react('👩‍🦰');
+                await message.react('🚁');
+                await message.react('🎦');
+                await message.react('🖌️');
+            } catch (e) {
+                console.log('An emoji didn\'t react:', e);
+            }
+        });
+
         
     }
 }
