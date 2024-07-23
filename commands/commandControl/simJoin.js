@@ -5,12 +5,12 @@ const simJoin = new SlashCommandBuilder()
     .setDescription('Will simulate a member joining the server')
 
 const execute = async interaction => {
-    interaction.client.emit('guildMemberAdd', interaction.member);
-    interaction.reply('Simulated a new member joining');
+    await interaction.client.emit('guildMemberAdd', interaction.member);
+    await interaction.reply('Simulated a new member joining');
 }
 
 module.exports = {
-    category: 'commandContol',
+    category: 'commandControl',
     data: simJoin,
     execute
 }
