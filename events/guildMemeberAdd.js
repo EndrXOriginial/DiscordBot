@@ -11,9 +11,11 @@ module.exports = {
         // Get all the roles in the server and puts the names in an array
         const roles = await member.guild.roles.fetch();
         let roleNames = [];
-        roles.forEach(role => roleNames.push(role.name));
+        roles.forEach(role => roleNames.push(role));
 
-        member.roles.add(`${roleNames['Pup']}`);
+        console.log(member);
+
+        await member.roles.role();
         
         // Creating the embed that will host the welcome message
         const welcomeEmbed = new EmbedBuilder()
@@ -23,8 +25,9 @@ module.exports = {
         .setDescription('Hope you enjoy your stay!')
         .addFields(
             {name : '\u200B', value: '\u200B'},
-            {name: 'Rules', value: 'will be button', inline: true},
-            {name: 'Tell us about yourself', value: 'React to this message with the emoji that corresponds to you', inline: true}
+            {name: 'Tell us about yourself', value: 'React to this message with the emoji that corresponds to you', inline: true},
+            {name : '\u200B', value: '\u200B', inline: true},
+            {name: 'Rules', value: 'Once you have told us about yourself, click on the book to read the rules', inline: true},
         )
 
         // Sending the embed message and adds the reactions
