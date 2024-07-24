@@ -1,4 +1,4 @@
-const { Events, EmbedBuilder } = require("discord.js");
+const { Events, EmbedBuilder, roleMention } = require("discord.js");
 const { getRoleByName } = require('../helperFunctions/roleFunctions');
 
 module.exports = {
@@ -16,6 +16,8 @@ module.exports = {
             '🎦': 'Streamer',
             '🖌️': 'Artist',
             '💻': 'Programmer',
+            '👍': 'Rules',
+
         }
         
         // Get all the roles in the server and puts the names in an array
@@ -28,16 +30,26 @@ module.exports = {
         
         // Creating the embed that will host the welcome message
         const welcomeEmbed = new EmbedBuilder()
-        .setColor('F14D4D')
-        .setTitle(`Welcome ${member.user.username}`)
-        .setThumbnail(`${member.displayAvatarURL()}`)
-        .setDescription(`Hope you enjoy your stay!`)
-        .addFields(
-            {name : '\u200B', value: '\u200B'},
-            {name: 'Tell us about yourself', value: 'React to this message with the emoji that corresponds to you', inline: true},
-            {name : '\u200B', value: '\u200B', inline: true},
-            {name: 'Rules', value: 'will be button', inline: true},
-        )
+            .setColor('F14D4D')
+            .setTitle(`Welcome ${member.user.username}`)
+            .setThumbnail(`${member.displayAvatarURL()}`)
+            .setDescription(`Hope you enjoy your stay!`)
+            .addFields(
+                {name : '\u200B', value: '\u200B'},
+                {name: 'Tell us about yourself', value: 'React to this message with the emoji that corresponds to you', inline: true},
+                // {name : '\u200B', value: '\u200B', inline: true},
+                {name: 'Rules', value: 'will be button', inline: true},
+                {name : '\u200B', value: '\u200B'},
+            )
+
+
+        let tempIndex = 0;
+        for (const [key, value] of Object.entries(reactionEmoji)) {
+            const boolInline = tempIndex == 0 ? true : tempIndex % 3 === 0;
+            console.log(!boolInline);
+            welcomeEmbed.addFields({name: key, value: value, inline: true});
+            tempIndex++;
+        }
 
 
         // Sending the embed message and adds the reactions
