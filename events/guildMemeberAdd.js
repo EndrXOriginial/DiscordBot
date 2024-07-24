@@ -37,7 +37,6 @@ module.exports = {
             .addFields(
                 {name : '\u200B', value: '\u200B'},
                 {name: 'Tell us about yourself', value: 'React to this message with the emoji that corresponds to you', inline: true},
-                // {name : '\u200B', value: '\u200B', inline: true},
                 {name: 'Rules', value: 'will be button', inline: true},
                 {name : '\u200B', value: '\u200B'},
             )
