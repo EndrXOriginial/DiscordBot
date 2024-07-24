@@ -42,12 +42,8 @@ module.exports = {
             )
 
 
-        let tempIndex = 0;
         for (const [key, value] of Object.entries(reactionEmoji)) {
-            const boolInline = tempIndex == 0 ? true : tempIndex % 3 === 0;
-            console.log(!boolInline);
             welcomeEmbed.addFields({name: key, value: value, inline: true});
-            tempIndex++;
         }
 
 
@@ -66,8 +62,5 @@ module.exports = {
                 console.log('An emoji didn\'t react:', e);
             }
         });
-
-        
-        
     }
 }
