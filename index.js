@@ -5,7 +5,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 
 dotenv.config();
 
-const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]});
+const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessageReactions]});
 client.commands = new Collection();
 client.cooldowns = new Collection();
 
