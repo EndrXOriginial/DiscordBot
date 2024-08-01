@@ -6,7 +6,10 @@ const serverCommand = new SlashCommandBuilder()
 
 const execute = async (interaction) => {
     const noneAssignableRoles = ['@everyone', 'TestBot 1.0', 'Bot', 'Pingcord', 'Streamcord', 'Dyno', 'Pancake'];
-    // console.log([...interaction.guild.roles.cache.values()].filter(role => !noneAssignableRoles.includes(role.name)).map(role => role.name).join(', '));
+    if (interaction.channel.name !== 'bot-commands') {
+        interaction.reply({content: 'Please use the command in the "bot-commands" channels. Thank you!', ephemeral: true});
+        return;
+    }
 
     const serverEmbed = new EmbedBuilder()
         .setColor('F14D4D')

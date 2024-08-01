@@ -13,6 +13,10 @@ const userCommand = new SlashCommandBuilder()
 
 const execute = async (interaction) => {
     const ephem = interaction.options.getBoolean('visibility');
+    if (interaction.channel.name !== 'bot-commands') {
+        interaction.reply({content: 'Please use the command in the "bot-commands" channels. Thank you!', ephemeral: true});
+        return;
+    }
 
     const userEmbed = new EmbedBuilder()
     .setColor(`${interaction.member.displayHexColor}`)

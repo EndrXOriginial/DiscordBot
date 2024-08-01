@@ -4,7 +4,8 @@ module.exports = {
     category: 'events',
     name: Events.InteractionCreate,
     async execute(interaction) {
-        if (!interaction.isChatInputCommand() && interaction.channel.name !== 'bot-commands') return;
+        console.log(interaction.channel.name !== 'bot-commands');
+        if (!interaction.isChatInputCommand()) return;
 
         const { cooldowns } = interaction.client;
         const command = interaction.client.commands.get(interaction.commandName);
